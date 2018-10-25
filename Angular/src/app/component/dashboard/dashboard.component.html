@@ -1,0 +1,63 @@
+<div class="jumbotron">
+  <header class="container-fluid">
+    <h1>
+      <fa name="wifi"></fa>&emsp;{{title}}
+    </h1>
+  </header>
+</div>
+<div class="container">
+
+  <div class="alert alert-info p-4" *ngIf="msg">
+    <fa name="info"></fa> {{msg}}
+  </div>
+
+  <div class="row">
+    <div class="col-sm-1 mt-2 ml-4 mr-4" *ngFor="let s of ['5','10','15']" title="Plans By Speed">
+      <div class="card bg-light " style="width:120px;">
+        <h1 class="text-center">
+          <fa name="fighter-jet"></fa>
+        </h1>
+        <div class="card-title text-center mt-2">
+          <h4><strong>{{s}} MBPS</strong></h4>
+        </div>
+        <!--<img class="card-img-top" [src]="g=='MALE'?maleLogo:(g=='FEMALE'?femaleLogo:othersLogo)" height="65px" />-->
+        <div class="card-body text-center">
+          <h3>
+            <a routerLink="/listPlans/speed/{{s}}">{{plans | speedCount : s}}</a>
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1 mt-2 ml-4 mr-4" *ngFor="let u of ['250','500','750']" title="Plans By Usage">
+      <div class="card bg-light " style="width:120px;">
+        <h1 class="text-center">
+          <fa name="bar-chart"></fa>
+        </h1>
+        <div class="card-title text-center mt-2">
+          <h4><strong>{{u}} GB</strong></h4>
+        </div>
+        <!--<img class="card-img-top" [src]="g=='MALE'?maleLogo:(g=='FEMALE'?femaleLogo:othersLogo)" height="65px" />-->
+        <div class="card-body text-center">
+          <h3>
+            <a routerLink="/listPlans/maxUsage/{{u}}">{{plans | usageCount : u}}</a>
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1 mt-2 ml-4 mr-4" title="All Plans">
+      <div class="card bg-light " style="width:120px;">
+        <h1 class="text-center">
+          <fa name="wifi"></fa>
+        </h1>
+        <div class="card-title text-center mt-2">
+          <h4><strong>Plans</strong></h4>
+        </div>
+        <!--<img class="card-img-top" [src]="logoUrl" />-->
+        <div class="card-body text-center">
+          <h3>
+            <a routerLink="/listPlans">{{plans.length}}</a>
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>

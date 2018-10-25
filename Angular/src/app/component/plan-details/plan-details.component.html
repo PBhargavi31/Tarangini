@@ -1,0 +1,34 @@
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-sm-9 m-auto" *ngIf="!plan">
+      <h3>
+        <fa name="cog" animation="spin"></fa> Loading
+      </h3>
+    </div>
+    <div class="col-sm-9 m-auto" *ngIf="plan">
+      <h3 class="mb-5 mt-5">
+        <fa name="address-card"></fa>
+        Plan Details
+      </h3>
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{plan.pTitle}}</h3>
+          <h4 class="float-left">
+            <fa name="inr"></fa>{{plan.charge}}
+          </h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <h5 class="float-left">{{plan.speed}} MBPS</h5>
+            <h5 class="float-left">{{plan.maxUsage}} per Month</h5>
+            <div class="btn-group float-right">
+              <a routerLink="/applyPlan/{{p.pTitle}}" class="btn" title="Apply">
+                <fa name="plus"></fa>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

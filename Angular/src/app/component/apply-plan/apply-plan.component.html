@@ -1,0 +1,212 @@
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-sm-9 m-auto">
+      <h3 class="mb-5 mt-5">
+
+        <fa name="{{isEditing?'edit':'user-plus'}}"></fa>
+        {{isEditing?"Edit":"New"}} Order
+
+      </h3>
+
+      <form class="form" #f="ngForm" novalidate (ngSubmit)=" save()">
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="width:40px;">
+                  <fa name="tty"></fa>
+              </span>
+            </div>
+            <div class="form-control"><strong>{{pTitle}}</strong></div>
+            
+          </div>
+        </div>
+
+        <!--<div class="mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <fa name="user"></fa>
+              </span>
+            </div>
+            <input type="number" class="form-control" id="cid" name="cid" required minlength="5" maxlength="40" [(ngModel)]="customer.cid"
+              #cid=ngModel placeholder="Id" />
+          </div>
+          <div class="alert alert-danger" *ngIf="(cid.errors && (cid.touched || cid.darty))">
+            <p *ngIf="(cid.errors && (cid.touched || cid.darty))">Please see that Id is entered
+              <strong>
+                <span *ngIf="cid.errors.required">is not left blank</span>
+                <span *ngIf="cid.errors.minlength">contains atleast 7 digits</span>
+                <span *ngIf="cid.errors.maxlength">contains atmost 15 digits</span>
+              </strong>
+            </p>
+          </div>
+        </div>-->
+
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="width:40px;">
+                <fa name="user"></fa>
+              </span>
+            </div>
+            <input type="text" class="form-control" id="name" name="name" required minlength="5" maxlength="40" [(ngModel)]="customer.name"
+              #name=ngModel placeholder="Name" />
+          </div>
+          <div class="alert alert-danger" *ngIf="(name.errors && (name.touched || name.darty))">
+            <p *ngIf="(name.errors && (name.touched || name.darty))">Please see that Name
+              <strong>
+                <span *ngIf="name.errors.required">is not left blank</span>
+                <span *ngIf="name.errors.minlength">is atleast 5 chars in length</span>
+              </strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="width:40px;">
+                <fa name="mobile"></fa>
+              </span>
+            </div>
+            <input type="number" class="form-control" id="mbno" name="mbno" required pattern="^[789]\d{9}$" [(ngModel)]="customer.mbno"
+              #mbno=ngModel placeholder="Mobile Number" />
+          </div>
+          <div class="alert alert-danger" *ngIf="mbno.errors && (mbno.touched || mbno.darty)">
+            <p>Please see that Mobile Number
+              <strong>
+                <span *ngIf="mbno.errors.required">is not left blank</span>
+              </strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="width:40px;">
+                <fa name="clock-o"></fa>
+              </span>
+            </div>
+            <select name="timeSlot" [(ngModel)]="customer.timeSlot" #timeSlot=ngModel placeholder="---">
+              <option value="10-12">10-12</option>
+              <option value="2-4" selected="selected">2-4</option>
+              <option value="4-6">4-6</option>
+              <option value="6-8">6-8</option>
+            </select>
+          </div>
+          <div class="alert alert-danger" *ngIf="timeSlot.errors && (timeSlot.touched || timeSlot.darty)">
+            <p>Please see Time Slot
+              <strong>
+                <span *ngIf="timeSlot.errors.required">is selected</span>
+              </strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="width:40px;">
+                <fa name="address-card"></fa>
+              </span>
+            </div>
+            <input type="text" class="form-control" id="address" name="address" required [(ngModel)]="customer.address" #address=ngModel
+              placeholder="Address" />
+          </div>
+          <div class="alert alert-danger" *ngIf="address.errors && (address.touched || address.darty)">
+            <p>Please see that Address
+              <strong>
+                <span *ngIf="address.errors.required">is not left blank</span>
+              </strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="width:40px;">
+                  <fa name="calendar"></fa>
+              </span>
+            </div>
+            <div class="form-control">{{dor}}</div>         
+          </div>
+        </div>
+
+        <!--<div class="mb-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <fa name="envelope"></fa>
+                </span>
+              </div>
+              <input type="email" class="form-control" id="emailId" name="emailId" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                [(ngModel)]="student.emailId" #emailId=ngModel placeholder="email" />
+            </div>
+            <div class="alert alert-danger" *ngIf="emailId.errors && (emailId.touched || emailId.darty)">
+              <p>Please see that EmailId ID
+                <strong>
+                  <span *ngIf="emailId.errors.required">is not left blank</span>
+                  <span *ngIf="emailId.errors.pattern">is of correct format</span>
+                </strong>
+              </p>
+            </div>
+          </div>-->
+
+        <!--<div class="mb-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <fa name="user"></fa>
+                </span>
+              </div>
+              <div class="form-check-inline" style="margin-left:10px;">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" name="gender" value="MALE" required [(ngModel)]="student.gender"
+                    #gender=ngModel />MALE
+                </label>
+              </div>
+              <div class="form-check-inline">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" name="gender" value="FEMALE" required [(ngModel)]="student.gender"
+                    #gender=ngModel />FEMALE
+                </label>
+              </div>
+              <div class="form-check-inline">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" name="gender" value="OTHERS" required [(ngModel)]="student.gender"
+                    #gender=ngModel />OTHERS
+                </label>
+              </div>
+            </div>
+            <div class="alert alert-danger" *ngIf="gender.invalid">
+              <p>Please see that Gender
+                <strong>is selected</strong>
+              </p>
+            </div>
+          </div>-->
+
+        <!--<div class="mb-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <fa name="calendar"></fa>
+                </span>
+              </div>
+              <input type="date" class="form-control" id="dob" name="dob" required [(ngModel)]="student.dob" #dob=ngModel />
+            </div>
+            <div class="alert alert-danger" *ngIf="dob.errors.required && (dob.touched || dob.dirty)">
+              <p>Please see that date of birth
+                <strong>is not left blank</strong>
+              </p>
+            </div>
+          </div>-->
+
+        <div>
+          <button class="btn btn-block btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

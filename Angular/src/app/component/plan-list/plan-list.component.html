@@ -1,0 +1,58 @@
+<div class="container mt-5">
+  <div id="sort" style="display:inline;">
+    <h2 class="mb-5 ml-5 mr-3" style="float:left;">
+      <fa name="list"></fa>&nbsp;&nbsp;Plans List
+    </h2>
+    <form class="form-inline" style="float:right;">
+      <div class="input-group-prepend">
+        <label><strong>Sort By </strong>&nbsp; </label>
+      </div>
+      <button (click)="order()">
+        <fa name="sort-amount-desc"></fa>
+      </button>
+      <div class="btn-group">
+        <select name="sortby" [(ngModel)]="sortbyv">
+          <option value="speed">Speed</option>
+          <option value="maxUsage">Usage(FUP)</option>
+          <option value="charge">Charge</option>
+        </select>
+      </div>
+      <button type="submit">
+        &nbsp;<fa name="random"></fa>
+      </button>
+    </form>
+  </div>
+  <div id="content" style="clear:both;">
+    <div class="alert alert-warning" *ngIf="!plans || plans.length==0">
+      <fa name="exclamation-triangle"></fa> Records could not be found or loaded
+    </div>
+
+    <div class="row" *ngIf="plans && plans.length>0">
+      <div class="col-lg-2 ml-3 mt-2 mb-2 mr-3" *ngFor="let p of plans | sortby : sortbyv : isDesc">
+        <div class="card" (mouseover)="cf.hidden=false" (mouseleave)="cf.hidden=false" style="width: 200px;">
+          <!--<img class="card-img-center" [src]="s.branch=='ECE'?ecelogo:(s.branch=='CSE'?cselogo:(s.branch=='MECH'?mechlogo:(s.branch=='CIVIL'?civillogo:(s.branch=='IT'?itlogo:eeelogo))))"
+            height="100px" />
+          <div class="card-body" [ngStyle]="{'background-color' : s.gender === 'MALE' ? '#cceeff' : s.gender === 'FEMALE' ? '#ffe9f3' : '#f2f2f2' }">-->
+          <h4 class="card-title" style="text-align: center;">{{p.pTitle}}</h4>
+          <h5 class="ml-3">
+            <fa name="inr"></fa>{{p.charge}}
+          </h5>
+          <p class="card-text ml-2">
+            <br><strong>Speed : </strong> {{p.speed}} MBPS
+            <br><strong>FUP (Usage) :</strong> {{p.maxUsage}}GB per Month
+          </p>
+        </div>
+        <div class="card-footer" hidden="false" #cf>
+          <div class="btn-group">
+            <a routerLink="/applyPlan/{{p.pTitle}}" class="btn" title="Apply">
+              <fa name="plus"></fa>
+            </a>
+            <a routerLink="/viewPlan/{{p.pTitle}}" class="btn" title="View">
+              <fa name="window-maximize"></fa>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
